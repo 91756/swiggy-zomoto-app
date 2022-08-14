@@ -2,6 +2,8 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import {MdSort} from 'react-icons/md'
+import {BsStarFill} from 'react-icons/bs'
+import {FaLessThan, FaGreaterThan} from 'react-icons/fa'
 import Header from '../Header'
 import HomeCarousals from '../HomeCarousals'
 import './index.css'
@@ -31,6 +33,7 @@ class Home extends Component {
     resturantsList: '',
     apiStatus: apiStatusConstant.initial,
     activePage: 1,
+    activeSortBy: sortByOptions[0].value,
   }
 
   componentDidMount() {
@@ -42,6 +45,7 @@ class Home extends Component {
     const {activePage} = this.state
     const LIMIT = 9
     const offset = (activePage - 1) * LIMIT
+    console.log(offset)
     const url = `https://apis.ccbp.in/restaurants-list?offset=${offset}&limit=${LIMIT}`
     const jwtToken = Cookies.get('jwt_token')
     const options = {
@@ -52,10 +56,47 @@ class Home extends Component {
     }
     const response = await fetch(url, options)
     const data = await response.json()
+    console.log(data)
+    const restaurantsData = data.restaurants.map(eachItem => ({
+      costForTwo: eachItem.cost_for_two,
+      cuisine: eachItem.cuisine,
+      groupByTime: eachItem.group_by_time,
+      hasOnlineDelivery: eachItem.has_online_delivery,
+      hasTableBooking: eachItem.has_table_booking,
+      id: eachItem.id,
+      imageUrl: eachItem.image_url,
+      isDeliveringNow: eachItem.is_delivering_now,
+      location: eachItem.location,
+      menuType: eachItem.menu_type,
+      name: eachItem.name,
+      opensAt: eachItem.opens_at,
+      userRating: eachItem.user_rating,
+    }))
+    console.log(restaurantsData)
     if (response.ok === true) {
-      console.log('ok')
-      this.setState({apiStatus: apiStatusConstant.success})
+      this.setState({
+        apiStatus: apiStatusConstant.success,
+        resturantsList: restaurantsData,
+      })
     }
+  }
+
+  onDecrementThePageNo = () => {
+    this.setState(
+      prevState => ({activePage: prevState.activePage - 1}),
+      this.getRestaurantsData,
+    )
+  }
+
+  onIncrementThePageNo = () => {
+    this.setState(
+      prevState => ({activePage: prevState.activePage + 1}),
+      this.getRestaurantsData,
+    )
+  }
+
+  changeActiveSortOption = event => {
+    this.setState({activeSortBy: event.target.value})
   }
 
   renderLoadingView = () => (
@@ -64,10 +105,44 @@ class Home extends Component {
     </div>
   )
 
-  renderSuccessView = () => {
+  renderRestaurantsList = () => {
     const {resturantsList} = this.state
     return (
-      <div className="restaurants-list-container">
+      <ul
+        className="restaurants-list-container"
+        testid="restaurants-list-loader"
+      >
+        {resturantsList.map(eachItem => (
+          <li
+            key={eachItem.id}
+            className="restaurant-item"
+            testid="restaurant-item"
+          >
+            <img
+              src={eachItem.imageUrl}
+              className="restaurant-image"
+              alt="restaurant"
+            />
+            <div className="restaurant-details">
+              <h1 className="restaurant-name">{eachItem.name}</h1>
+              <p className="restaurant-type">{eachItem.cuisine}</p>
+              <div className="rating-container">
+                <BsStarFill className="star-icon" />
+                <p className="rating">{eachItem.userRating.rating}</p>
+                <p className="count-rating">{`(${eachItem.userRating.total_reviews} ratings)`}</p>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+
+  renderSuccessView = () => {
+    const {resturantsList, activeSortBy, activePage} = this.state
+    console.log(activePage)
+    return (
+      <div className="restaurants-container">
         <div className="restaurant-list">
           <h1 className="title">Popular Restaurants</h1>
           <div className="text-filter-container">
@@ -77,14 +152,45 @@ class Home extends Component {
             </p>
             <div className="filter-container">
               <MdSort />
-              <h1 className="title-in-filter">Sort by Lowest</h1>
-              <select>
+              <h1 className="title-in-filter">Sort by</h1>
+              <select
+                value={activeSortBy}
+                className="select-by-option"
+                onChange={this.changeActiveSortOption}
+              >
                 {sortByOptions.map(eachOption => (
-                  <option>{eachOption.displayText}</option>
+                  <option
+                    key={eachOption.id}
+                    className="filter-option"
+                    value={eachOption.value}
+                  >
+                    {eachOption.displayText}
+                  </option>
                 ))}
               </select>
             </div>
           </div>
+          <hr className="hr-line" />
+        </div>
+        {this.renderRestaurantsList()}
+        <div className="pagination-container">
+          <button
+            type="button"
+            className="btn-container"
+            onClick={this.onDecrementThePageNo}
+          >
+            <FaLessThan className="icon-style" />
+          </button>
+          <h1 className="pagination-text">
+            <span testid="active-page-number">{`${activePage}`}</span> of 4
+          </h1>
+          <button
+            type="button"
+            className="btn-container"
+            onClick={this.onIncrementThePageNo}
+          >
+            <FaGreaterThan />
+          </button>
         </div>
       </div>
     )

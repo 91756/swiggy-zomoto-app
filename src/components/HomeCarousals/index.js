@@ -25,7 +25,6 @@ export default class HomeCarousals extends Component {
       id: eachData.id,
       imageUrl: eachData.image_url,
     }))
-    console.log(offersData)
     this.setState({carousalsList: offersData, apiStatus: true})
   }
 

@@ -1,9 +1,15 @@
-.nav-header {
+.nav-container {
   background-color: #f8fafc;
   display: flex;
+  width: 100vw;
   height: 80px;
-  padding-left: 35px;
-  padding-right: 35px;
+  justify-content: center;
+  align-items: center;
+}
+.nav-header {
+  display: flex;
+  width: 85vw;
+  height: 80px;
   justify-content: space-between;
   align-items: center;
 }

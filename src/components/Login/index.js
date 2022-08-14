@@ -8,14 +8,11 @@ class Login extends Component {
 
   loginSuccess = jwtToken => {
     const {history} = this.props
-    console.log(history)
     Cookies.set('jwt_token', jwtToken, {expires: 30, path: '/'})
     history.replace('/')
   }
 
   loginFailure = errorMsg => {
-    console.log(errorMsg)
-
     this.setState({showErrorMsg: true, errorMsg})
   }
 
