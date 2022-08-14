@@ -5,6 +5,7 @@ import {MdSort} from 'react-icons/md'
 import {BsStarFill} from 'react-icons/bs'
 import {FaLessThan, FaGreaterThan} from 'react-icons/fa'
 import Header from '../Header'
+import Footer from '../Footer'
 import HomeCarousals from '../HomeCarousals'
 import './index.css'
 
@@ -33,7 +34,8 @@ class Home extends Component {
     resturantsList: '',
     apiStatus: apiStatusConstant.initial,
     activePage: 1,
-    activeSortBy: sortByOptions[0].value,
+    selectedSortBy: sortByOptions[0].value,
+    searchInput: '',
   }
 
   componentDidMount() {
@@ -42,11 +44,11 @@ class Home extends Component {
 
   getRestaurantsData = async () => {
     this.setState({apiStatus: apiStatusConstant.loading})
-    const {activePage} = this.state
+    const {activePage, selectedSortBy} = this.state
     const LIMIT = 9
     const offset = (activePage - 1) * LIMIT
     console.log(offset)
-    const url = `https://apis.ccbp.in/restaurants-list?offset=${offset}&limit=${LIMIT}`
+    const url = `https://apis.ccbp.in/restaurants-list?offset=${offset}&limit=${LIMIT}&sort_by_rating=${selectedSortBy}`
     const jwtToken = Cookies.get('jwt_token')
     const options = {
       method: 'GET',
@@ -81,22 +83,40 @@ class Home extends Component {
     }
   }
 
-  onDecrementThePageNo = () => {
+  onChangeSearchInput = event => {
+    this.setState({searchInput: event.target.value})
+  }
+
+  onDecrementThePageNo1 = () => {
     this.setState(
-      prevState => ({activePage: prevState.activePage - 1}),
+      prevState => ({selectedSortBy: prevState.activePage - 1}),
       this.getRestaurantsData,
     )
   }
 
-  onIncrementThePageNo = () => {
+  onDecrementThePageNo = () => {
+    const {activePage} = this.state
+    if (activePage > 1) {
+      this.setState({activePage: activePage - 1}, this.getRestaurantsData)
+    }
+  }
+
+  onIncrementThePageNo1 = () => {
     this.setState(
       prevState => ({activePage: prevState.activePage + 1}),
       this.getRestaurantsData,
     )
   }
 
+  onIncrementThePageNo = () => {
+    const {activePage} = this.state
+    if (activePage < 4) {
+      this.setState({activePage: activePage + 1}, this.getRestaurantsData)
+    }
+  }
+
   changeActiveSortOption = event => {
-    this.setState({activeSortBy: event.target.value})
+    this.setState({selectedSortBy: event.target.value}, this.getRestaurantsData)
   }
 
   renderLoadingView = () => (
@@ -104,6 +124,14 @@ class Home extends Component {
       <Loader type="TailSpin" color="#F7931E" height="50" width="50" />
     </div>
   )
+
+  getResultedData = searchInput => {
+    const {resturantsList} = this.state
+    const resultedData = resturantsList.filter(eachItem =>
+      eachItem.name.toLowercase().includes(searchInput.toLowercase()),
+    )
+    return resultedData
+  }
 
   renderRestaurantsList = () => {
     const {resturantsList} = this.state
@@ -139,7 +167,7 @@ class Home extends Component {
   }
 
   renderSuccessView = () => {
-    const {resturantsList, activeSortBy, activePage} = this.state
+    const {resturantsList, selectedSortBy, activePage} = this.state
     console.log(activePage)
     return (
       <div className="restaurants-container">
@@ -154,7 +182,7 @@ class Home extends Component {
               <MdSort />
               <h1 className="title-in-filter">Sort by</h1>
               <select
-                value={activeSortBy}
+                value={selectedSortBy}
                 className="select-by-option"
                 onChange={this.changeActiveSortOption}
               >
@@ -170,6 +198,11 @@ class Home extends Component {
               </select>
             </div>
           </div>
+          <input
+            type="search"
+            className="search-input"
+            onChange={this.onChangeSearchInput}
+          />
           <hr className="hr-line" />
         </div>
         {this.renderRestaurantsList()}
@@ -178,6 +211,7 @@ class Home extends Component {
             type="button"
             className="btn-container"
             onClick={this.onDecrementThePageNo}
+            testid="pagination-left-button"
           >
             <FaLessThan className="icon-style" />
           </button>
@@ -188,8 +222,9 @@ class Home extends Component {
             type="button"
             className="btn-container"
             onClick={this.onIncrementThePageNo}
+            testid="pagination-right-button"
           >
-            <FaGreaterThan />
+            <FaGreaterThan className="icon-style" />
           </button>
         </div>
       </div>
@@ -214,6 +249,7 @@ class Home extends Component {
         <Header />
         <HomeCarousals />
         {this.renderRestaurantsStatusView()}
+        <Footer />
       </div>
     )
   }

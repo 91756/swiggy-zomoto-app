@@ -1,10 +1,21 @@
 import React, {Component} from 'react'
+import Loader from 'react-loader-spinner'
 import Slider from 'react-slick'
 import Cookies from 'js-cookie'
 import './index.css'
 
+const apiStatusConstant = {
+  initial: 'INITIAL',
+  loading: 'IN_PROGRESS',
+  success: 'SUCCESS',
+  failure: 'FAILURE',
+}
+
 export default class HomeCarousals extends Component {
-  state = {carousalsList: '', apiStatus: false}
+  state = {
+    carousalsList: '',
+    apiStatus: false,
+  }
 
   componentDidMount() {
     this.getCarousalsList()
@@ -25,7 +36,20 @@ export default class HomeCarousals extends Component {
       id: eachData.id,
       imageUrl: eachData.image_url,
     }))
-    this.setState({carousalsList: offersData, apiStatus: true})
+    this.setState({
+      apiStatus: true,
+      carousalsList: offersData,
+    })
+  }
+
+  renderLoadingView = () => (
+    <div className="loader-container" testid="loader">
+      <Loader type="TailSpin" color="#F7931E" height="50" width="50" />
+    </div>
+  )
+
+  render1() {
+    return <div className="container">{this.renderCarousalsStatusView()}</div>
   }
 
   render() {
