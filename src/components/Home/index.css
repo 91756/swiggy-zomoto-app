@@ -1,0 +1,43 @@
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.restaurants-list-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.restaurant-list {
+  width: 80%;
+  padding: 5px;
+}
+.title {
+  color: #183b56;
+  font-size: 32px;
+  font-family: 'Dm Sans';
+  font-weight: 700;
+  margin-bottom: 0px;
+}
+.restaurant-description {
+  color: #64748b;
+  font-size: 16px;
+  font-family: 'Dm Sans';
+}
+.text-filter-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0px;
+}
+.filter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.title-in-filter {
+  font-size: 16px;
+  color: #475569;
+  font-family: 'Dm Sans';
+  margin: 5px;
+}

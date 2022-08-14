@@ -1,0 +1,10 @@
+.carousals-container {
+  width: 85%;
+}
+.container {
+  display: flex;
+  justify-content: center;
+}
+.carousals-image {
+  width: 100%;
+}

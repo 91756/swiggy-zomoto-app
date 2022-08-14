@@ -1,0 +1,44 @@
+.nav-header {
+  background-color: #f8fafc;
+  display: flex;
+  height: 80px;
+  padding-left: 35px;
+  padding-right: 35px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-name-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.website-logo-img {
+  width: 40px;
+  height: 40px;
+}
+.heading-name {
+  color: #f7931e;
+  font-style: italic;
+  font-size: 24px;
+  font-weight: 700;
+  margin-left: 5px;
+}
+.header-container {
+  display: flex;
+  align-items: center;
+}
+.nav-item {
+  list-style-type: none;
+  margin: 15px;
+  font-family: 'Roboto';
+  font-size: 18px;
+}
+.logout-button {
+  background-color: #f7931e;
+  border-width: 0px;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 14px;
+  padding: 12px;
+}
