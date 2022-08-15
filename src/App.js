@@ -6,6 +6,7 @@ import Home from './components/Home'
 import Footer from './components/Footer'
 import PageNotFound from './components/PageNotFound'
 import ProtectedRoute from './components/ProtectedRoute'
+import RestaurantDetails from './components/RestaurantDetails'
 
 const sortByOptions = [
   {
@@ -24,6 +25,7 @@ const App = () => (
   <Switch>
     <Route exact path="/login" component={Login} />
     <ProtectedRoute exact path="/" component={Home} />
+    <ProtectedRoute exact path="/restaurant" component={RestaurantDetails} />
     <Route path="/not-found" component={PageNotFound} />
     <Redirect to="/not-found" />
   </Switch>

@@ -1,0 +1,129 @@
+.loader-container {
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.restaurant-profile-container {
+  height: 45vh;
+  background-image: url('https://res.cloudinary.com/dy8lqwi3r/image/upload/v1660544555/Frame_279_nqfgca.png');
+  background-size: cover;
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  padding-left: 50px;
+}
+.restaurant-details1 {
+  display: flex;
+  width: 70vw;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.details-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 20px;
+}
+.restaurant-name {
+  color: #ffffff;
+  font-weight: 500;
+  margin-top: 5px;
+  font-family: 'Roboto';
+}
+
+.restaurant-type {
+  color: #ffffff;
+  font-weight: 400;
+  font-family: 'Roboto';
+  margin-top: 5px;
+}
+@media screen and (min-width: 992px) {
+  .restaurant-name {
+    font-size: 32px;
+    font-weight: 500;
+    margin-top: 5px;
+    font-family: 'Roboto';
+  }
+  .restaurant-type {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Roboto';
+    margin-top: 5px;
+  }
+  .restaurant-image {
+    width: 270px;
+    height: 180px;
+    border-radius: 8px;
+  }
+  .restaurant-details {
+    display: flex;
+    width: 70vw;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .restaurant-name {
+    font-size: 26px;
+    font-weight: 500;
+    margin-top: 5px;
+    font-family: 'Roboto';
+  }
+  .restaurant-type {
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 400;
+    font-family: 'Roboto';
+    margin-top: 5px;
+    margin-bottom: 0px;
+  }
+  .restaurant-image {
+    width: 230px;
+    height: 150px;
+    border-radius: 8px;
+  }
+  .restaurant-details {
+    display: flex;
+    width: 85vw;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+}
+.icon-color {
+  color: #ffffff;
+  width: 15px;
+  margin-left: 0px;
+}
+.rating-number {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: 'Roboto';
+  margin-left: 2px;
+}
+
+.ratings-cart {
+  display: flex;
+  align-items: center;
+}
+.ratings-count {
+  color: #ffffff;
+  font-size: 12px;
+}
+.ratings-container {
+  display: flex;
+
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.rating-cart {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0px;
+}

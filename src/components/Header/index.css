@@ -74,6 +74,8 @@
 
 .mobile-menu-options {
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .navbar-container {
   font-size: 16px;
@@ -108,4 +110,14 @@
   color: #ffffff;
   font-size: 14px;
   padding: 12px;
+}
+.active-class {
+  color: #f7931e;
+  font-size: 18px;
+  list-style-type: none;
+}
+.active-for-class {
+  color: #f7931e;
+  font-size: 12px;
+  list-style-type: none;
 }

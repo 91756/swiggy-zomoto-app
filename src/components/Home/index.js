@@ -87,25 +87,11 @@ class Home extends Component {
     this.setState({searchInput: event.target.value})
   }
 
-  onDecrementThePageNo1 = () => {
-    this.setState(
-      prevState => ({selectedSortBy: prevState.activePage - 1}),
-      this.getRestaurantsData,
-    )
-  }
-
   onDecrementThePageNo = () => {
     const {activePage} = this.state
     if (activePage > 1) {
       this.setState({activePage: activePage - 1}, this.getRestaurantsData)
     }
-  }
-
-  onIncrementThePageNo1 = () => {
-    this.setState(
-      prevState => ({activePage: prevState.activePage + 1}),
-      this.getRestaurantsData,
-    )
   }
 
   onIncrementThePageNo = () => {
@@ -199,7 +185,7 @@ class Home extends Component {
             </div>
           </div>
           <input
-            type="search"
+            type="text"
             className="search-input"
             onChange={this.onChangeSearchInput}
           />

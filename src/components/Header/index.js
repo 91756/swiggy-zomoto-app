@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import {Redirect, withRouter} from 'react-router-dom'
+import {Redirect, withRouter, useLocation} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import {BsList, BsFillXCircleFill} from 'react-icons/bs'
 import './index.css'
@@ -15,30 +15,40 @@ class Header extends Component {
     history.replace('/login')
   }
 
-  renderHamburgerMenu = () => (
-    <div className="mobile-menu">
-      <ul className="mobile-menu-options">
-        <li className="nav-item-mobile">Home</li>
-        <li className="nav-item-mobile">Cart</li>
-        <li className="nav-item-mobile">
-          <button
-            type="button"
-            className="logout-mobil-button"
-            onClick={this.onLogout}
+  renderHamburgerMenu = () => {
+    const {location} = this.props
+    const {pathname} = location
+    return (
+      <div className="mobile-menu">
+        <ul className="mobile-menu-options">
+          <li
+            className={
+              pathname === '/' ? 'active-for-class' : 'nav-item-mobile'
+            }
           >
-            Logout
-          </button>
-        </li>
-      </ul>
-      <button
-        type="button"
-        className="close-button"
-        onClick={this.onChangeShowMenu}
-      >
-        <BsFillXCircleFill className="close-menu-options" />
-      </button>
-    </div>
-  )
+            Home
+          </li>
+          <li className="nav-item-mobile">Cart</li>
+          <li className="nav-item-mobile">
+            <button
+              type="button"
+              className="logout-mobil-button"
+              onClick={this.onLogout}
+            >
+              Logout
+            </button>
+          </li>
+        </ul>
+        <button
+          type="button"
+          className="close-button"
+          onClick={this.onChangeShowMenu}
+        >
+          <BsFillXCircleFill className="close-menu-options" />
+        </button>
+      </div>
+    )
+  }
 
   onChangeShowMenu = () => {
     this.setState(prevState => ({showMenu: !prevState.showMenu}))
@@ -46,6 +56,9 @@ class Header extends Component {
 
   render() {
     const {showMenu} = this.state
+    const {location} = this.props
+    const {pathname} = location
+    console.log(pathname)
     return (
       <div className="navbar-container">
         <nav className="nav-container">
@@ -59,7 +72,9 @@ class Header extends Component {
               <h1 className="heading-name">Tasty Kitchen</h1>
             </div>
             <ul className="desktop-header-container">
-              <li className=" nav-item">Home</li>
+              <li className={pathname === '/' ? 'active-class' : 'nav-item'}>
+                Home
+              </li>
               <li className=" nav-item">Cart</li>
               <li className=" nav-item">
                 <button
