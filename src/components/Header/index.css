@@ -63,6 +63,7 @@
   .desktop-header-container {
     display: flex;
     align-items: center;
+    justify-content: center;
   }
   .mobile-header-container {
     display: none;
@@ -99,11 +100,12 @@
 
 .nav-item {
   list-style-type: none;
-  margin: 15px;
   font-family: 'Roboto';
   font-size: 18px;
+  margin: 10px;
+  color: #334155;
 }
-.logout-button {
+.logout-desktop-button {
   background-color: #f7931e;
   border-width: 0px;
   border-radius: 8px;
@@ -114,6 +116,8 @@
 .active-class {
   color: #f7931e;
   font-size: 18px;
+  margin: 10px;
+  font-family: 'Roboto';
   list-style-type: none;
 }
 .active-for-class {

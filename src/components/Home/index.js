@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
+import {Link} from 'react-router-dom'
 import {MdSort} from 'react-icons/md'
 import {BsStarFill} from 'react-icons/bs'
 import {FaLessThan, FaGreaterThan} from 'react-icons/fa'
@@ -127,26 +128,28 @@ class Home extends Component {
         testid="restaurants-list-loader"
       >
         {resturantsList.map(eachItem => (
-          <li
-            key={eachItem.id}
-            className="restaurant-item"
-            testid="restaurant-item"
-          >
-            <img
-              src={eachItem.imageUrl}
-              className="restaurant-image"
-              alt="restaurant"
-            />
-            <div className="restaurant-details">
-              <h1 className="restaurant-name">{eachItem.name}</h1>
-              <p className="restaurant-type">{eachItem.cuisine}</p>
-              <div className="rating-container">
-                <BsStarFill className="star-icon" />
-                <p className="rating">{eachItem.userRating.rating}</p>
-                <p className="count-rating">{`(${eachItem.userRating.total_reviews} ratings)`}</p>
+          <Link to={`/restaurant/${eachItem.id}`} className="nav-link">
+            <li
+              key={eachItem.id}
+              className="restaurant-item"
+              testid="restaurant-item"
+            >
+              <img
+                src={eachItem.imageUrl}
+                className="restaurant-image"
+                alt="restaurant"
+              />
+              <div className="restaurant-details">
+                <h1 className="restaurant-name">{eachItem.name}</h1>
+                <p className="restaurant-type">{eachItem.cuisine}</p>
+                <div className="rating-container">
+                  <BsStarFill className="star-icon" />
+                  <p className="rating">{eachItem.userRating.rating}</p>
+                  <p className="count-rating">{`(${eachItem.userRating.total_reviews} ratings)`}</p>
+                </div>
               </div>
-            </div>
-          </li>
+            </li>
+          </Link>
         ))}
       </ul>
     )

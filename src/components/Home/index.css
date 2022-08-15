@@ -150,3 +150,6 @@
   background-color: #f5f6f7;
   color: #1e293b;
 }
+.nav-link {
+  text-decoration: none;
+}

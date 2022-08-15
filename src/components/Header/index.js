@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import {Redirect, withRouter, useLocation} from 'react-router-dom'
+import {Redirect, withRouter, useLocation, Link} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import {BsList, BsFillXCircleFill} from 'react-icons/bs'
 import './index.css'
@@ -18,17 +18,28 @@ class Header extends Component {
   renderHamburgerMenu = () => {
     const {location} = this.props
     const {pathname} = location
+    const path = pathname.split('/')[1]
     return (
       <div className="mobile-menu">
         <ul className="mobile-menu-options">
-          <li
-            className={
-              pathname === '/' ? 'active-for-class' : 'nav-item-mobile'
-            }
-          >
-            Home
-          </li>
-          <li className="nav-item-mobile">Cart</li>
+          <Link to="/" className="nav-link">
+            <li
+              className={
+                pathname === '/' ? 'active-for-class' : 'nav-item-mobile'
+              }
+            >
+              Home
+            </li>
+          </Link>
+          <Link to="/cart" className="nav-link">
+            <li
+              className={
+                path === 'cart' ? 'active-for-class' : 'nav-item-mobile'
+              }
+            >
+              Cart
+            </li>
+          </Link>
           <li className="nav-item-mobile">
             <button
               type="button"
@@ -58,7 +69,7 @@ class Header extends Component {
     const {showMenu} = this.state
     const {location} = this.props
     const {pathname} = location
-    console.log(pathname)
+    const path = pathname.split('/')[1]
     return (
       <div className="navbar-container">
         <nav className="nav-container">
@@ -72,14 +83,20 @@ class Header extends Component {
               <h1 className="heading-name">Tasty Kitchen</h1>
             </div>
             <ul className="desktop-header-container">
-              <li className={pathname === '/' ? 'active-class' : 'nav-item'}>
-                Home
-              </li>
-              <li className=" nav-item">Cart</li>
+              <Link to="/" className="nav-link">
+                <li className={pathname === '/' ? 'active-class' : 'nav-item'}>
+                  Home
+                </li>
+              </Link>
+              <Link to="/cart" className="nav-link">
+                <li className={path === 'cart' ? 'active-class' : 'nav-item'}>
+                  Cart
+                </li>
+              </Link>
               <li className=" nav-item">
                 <button
                   type="button"
-                  className="logout-button"
+                  className="logout-desktop-button"
                   onClick={this.onLogout}
                 >
                   Logout
