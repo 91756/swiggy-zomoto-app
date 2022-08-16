@@ -24,9 +24,10 @@ class Header extends Component {
         <ul className="mobile-menu-options">
           <Link to="/" className="nav-link">
             <li
-              className={
-                pathname === '/' ? 'active-for-class' : 'nav-item-mobile'
-              }
+              className={`
+                ${pathname === '/' ? 'active-for-class' : 'nav-item-mobile'}  ${
+                path === 'restaurant' ? 'active-for-class' : 'nav-item-mobile'
+              }  `}
             >
               Home
             </li>
@@ -74,17 +75,24 @@ class Header extends Component {
       <div className="navbar-container">
         <nav className="nav-container">
           <div className="nav-header">
-            <div className="logo-name-container">
-              <img
-                src="https://res.cloudinary.com/dy8lqwi3r/image/upload/v1660412417/swiggy_logo_to9j9a.jpg "
-                alt="website logo"
-                className="website-logo-img"
-              />
-              <h1 className="heading-name">Tasty Kitchen</h1>
-            </div>
+            <Link to="/" className="nav-link">
+              <div className="logo-name-container">
+                <img
+                  src="https://res.cloudinary.com/dy8lqwi3r/image/upload/v1660412417/swiggy_logo_to9j9a.jpg "
+                  alt="website logo"
+                  className="website-logo-img"
+                />
+                <h1 className="heading-name">Tasty Kitchen</h1>
+              </div>
+            </Link>
             <ul className="desktop-header-container">
               <Link to="/" className="nav-link">
-                <li className={pathname === '/' ? 'active-class' : 'nav-item'}>
+                <li
+                  className={`
+                    ${path === 'restaurant' ? 'active-class' : 'nav-item'} ${
+                    pathname === '/' ? 'active-class' : 'nav-item'
+                  }`}
+                >
                   Home
                 </li>
               </Link>

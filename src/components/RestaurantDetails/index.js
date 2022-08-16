@@ -6,6 +6,7 @@ import {BiRupee} from 'react-icons/bi'
 import './index.css'
 import Header from '../Header'
 import Footer from '../Footer'
+import FoodItemCard from '../FoodItemCard'
 
 const apiStatusConstant = {
   initial: 'INITIAL',
@@ -79,31 +80,11 @@ class RestaurantDetails extends Component {
         <div className="food-items-container">
           <ul className="food-list-container">
             {foodItems.map(eachItem => (
-              <li
+              <FoodItemCard
                 key={eachItem.id}
-                className="food-item-container"
+                foodItemDetails={eachItem}
                 testid="foodItem"
-              >
-                <img
-                  src={eachItem.imageUrl}
-                  alt="food item"
-                  className="food-item-image"
-                />
-                <div className="food-item-details">
-                  <h1 className="food-item-name">{eachItem.name}</h1>
-                  <div className="cost-container">
-                    <BiRupee className="cost-icon" />
-                    <p className="food-cost">{eachItem.cost}</p>
-                  </div>
-                  <div className="ratings-container">
-                    <AiFillStar className="star-icon" />
-                    <p className="food-item-rating">{eachItem.rating}</p>
-                  </div>
-                  <button type="button" className="add-button">
-                    ADD
-                  </button>
-                </div>
-              </li>
+              />
             ))}
           </ul>
         </div>

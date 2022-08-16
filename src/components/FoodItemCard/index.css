@@ -1,0 +1,116 @@
+@media screen and (max-width: 768px) {
+  .food-item-container {
+    list-style-type: none;
+    margin: 25px;
+    width: 450px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .food-item-container {
+    list-style-type: none;
+    margin: 25px;
+    width: 450px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 991px) {
+  .food-item-container {
+    list-style-type: none;
+    margin: 20px;
+    width: 320px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.food-item-image {
+  width: 180px;
+  height: 130px;
+  border-radius: 7px;
+}
+.food-item-container1 {
+  list-style-type: none;
+  margin: 25px;
+  width: 450px;
+  display: flex;
+  align-items: center;
+}
+.food-item-details {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.food-item-name {
+  color: #334155;
+  font-size: 18px;
+  font-family: 'Dm Sans';
+  font-weight: bold;
+}
+.cost-cart-data {
+  display: flex;
+  align-items: center;
+  margin-left: -15px;
+}
+.food-cost {
+  color: #334155;
+  font-size: 16px;
+  font-family: 'Dm Sans';
+  margin-left: 5px;
+}
+.cost-icon {
+  color: #334155;
+  width: 16px;
+}
+.cost-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: -18px;
+}
+.add-button {
+  color: #ffa412;
+  font-size: 12px;
+  width: 55px;
+  height: 25px;
+  border: 2px solid #ffa412;
+  background-color: transparent;
+  border-radius: 5px;
+  margin-top: -10px;
+}
+.ratings-container {
+  display: flex;
+  align-items: center;
+  margin-top: -27px;
+}
+.food-item-rating {
+  color: #0a1f44;
+  font-size: 14px;
+  font-family: 'Dm Sans';
+}
+.star-icon {
+  color: #ffa412;
+}
+.quantity-counter-container {
+  display: flex;
+  align-items: center;
+  margin-top: -10px;
+}
+.quantity-button {
+  background-color: transparent;
+  margin: 5px;
+  border: 1px solid #3e4c59;
+  padding-top: 1px;
+}
+.total-quantity {
+  color: #475569;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: 'Dm Sans';
+  margin: 3px;
+}
