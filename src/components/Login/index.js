@@ -8,7 +8,7 @@ class Login extends Component {
 
   loginSuccess = jwtToken => {
     const {history} = this.props
-    Cookies.set('jwt_token', jwtToken, {expires: 30, path: '/'})
+    Cookies.set('jwt_token', jwtToken, {expires: 30})
     history.replace('/')
   }
 
@@ -65,7 +65,7 @@ class Login extends Component {
               alt="website login"
               className="website-logo"
             />
-            <h1 className="heading">Tasty Kitchen</h1>
+            <h1 className="heading">Tasty Kitchens</h1>
             <h1 className="login-name">Login</h1>
             <div>
               <label htmlFor="username" className="label">
@@ -81,13 +81,13 @@ class Login extends Component {
               />
             </div>
             <div>
-              <label htmlFor="username" className="label">
+              <label htmlFor="password" className="label">
                 PASSWORD
               </label>
               <br />
               <input
                 type="password"
-                id="username"
+                id="password"
                 className="input-text"
                 value={password}
                 onChange={this.onChangePassword}

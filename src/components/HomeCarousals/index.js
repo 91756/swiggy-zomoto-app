@@ -11,10 +11,10 @@ const apiStatusConstant = {
   failure: 'FAILURE',
 }
 
-export default class HomeCarousals extends Component {
+class HomeCarousals extends Component {
   state = {
-    carousalsList: '',
-    apiStatus: false,
+    carousalsList: [],
+    isLoading: false,
   }
 
   componentDidMount() {
@@ -22,6 +22,7 @@ export default class HomeCarousals extends Component {
   }
 
   getCarousalsList = async () => {
+    this.setState({isLoading: true})
     const url = 'https://apis.ccbp.in/restaurants-list/offers'
     const jwtToken = Cookies.get('jwt_token')
     const options = {
@@ -37,23 +38,19 @@ export default class HomeCarousals extends Component {
       imageUrl: eachData.image_url,
     }))
     this.setState({
-      apiStatus: true,
+      isLoading: false,
       carousalsList: offersData,
     })
   }
 
   renderLoadingView = () => (
-    <div className="loader-container" testid="loader">
+    <div className="loader-container" testid="restaurants-offers-loader">
       <Loader type="TailSpin" color="#F7931E" height="50" width="50" />
     </div>
   )
 
-  render1() {
-    return <div className="container">{this.renderCarousalsStatusView()}</div>
-  }
-
-  render() {
-    const {carousalsList, apiStatus} = this.state
+  renderCarousalsView = () => {
+    const {carousalsList} = this.state
     console.log(carousalsList)
     const settings = {
       dots: true,
@@ -63,25 +60,26 @@ export default class HomeCarousals extends Component {
       slidesToScroll: 1,
     }
     return (
-      <div className="container">
-        <div className="carousals-container" testid="restaurants-offers-loader">
-          {apiStatus && (
-            <ul>
-              <Slider {...settings}>
-                {carousalsList.map(eachItem => (
-                  <li key={eachItem.id}>
-                    <img
-                      src={eachItem.imageUrl}
-                      alt="offers"
-                      className="carousals-image"
-                    />
-                  </li>
-                ))}
-              </Slider>
-            </ul>
-          )}
-        </div>
-      </div>
+      <ul className="container">
+        <Slider {...settings} className="carousals-container">
+          {carousalsList.map(eachItem => (
+            <li key={eachItem.id}>
+              <img
+                src={eachItem.imageUrl}
+                alt="offer"
+                className="carousals-image"
+              />
+            </li>
+          ))}
+        </Slider>
+      </ul>
     )
   }
+
+  render() {
+    const {isLoading} = this.state
+    return isLoading ? this.renderLoadingView() : this.renderCarousalsView()
+  }
 }
+
+export default HomeCarousals

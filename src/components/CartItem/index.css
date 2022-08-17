@@ -3,7 +3,7 @@
   font-size: 20px;
   font-family: 'Dm Sans';
 }
-.food-list-names {
+.cart-food-container {
   display: flex;
   width: 90vw;
   justify-content: space-around;
@@ -13,22 +13,92 @@
   display: flex;
   align-items: center;
 }
-.cart-food-item-image {
+.cart-food-item-image1 {
   width: 120px;
   height: 100px;
+  border-radius: 5px;
 }
-.cart-food-name {
+.cart-food-name1 {
   color: #183b56;
   font-size: 20px;
   margin-left: 5px;
   font-family: 'Dm Sans';
 }
-.price {
-  color: #ffa412;
-  font-size: 16px;
-  font-weight: bold;
-}
+
 .total-price-container {
   display: flex;
   align-items: center;
+}
+
+.cart-for-element1 {
+  width: 400px;
+  margin-left: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (min-width: 992px) {
+  .cart-for-element {
+    width: 400px;
+    margin-left: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .cart-food-name {
+    color: #183b56;
+    font-size: 20px;
+    margin-left: 5px;
+    font-family: 'Dm Sans';
+  }
+  .cart-food-item-image {
+    width: 120px;
+    height: 100px;
+    border-radius: 12px;
+  }
+  .price {
+    color: #ffa412;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .cart-for-image-name {
+    width: 400px;
+    margin-left: 30px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .cart-for-element {
+    width: 360px;
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .cart-food-name {
+    color: #183b56;
+    font-size: 15px;
+    margin-left: 5px;
+    font-family: 'Dm Sans';
+  }
+  .cart-food-item-image {
+    width: 100px;
+    height: 80px;
+    border-radius: 5px;
+  }
+  .price {
+    color: #ffa412;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  .cart-for-image-name {
+    width: 360px;
+    margin-left: 30px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
 }

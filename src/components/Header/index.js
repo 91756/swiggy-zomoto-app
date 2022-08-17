@@ -72,8 +72,8 @@ class Header extends Component {
     const {pathname} = location
     const path = pathname.split('/')[1]
     return (
-      <div className="navbar-container">
-        <nav className="nav-container">
+      <nav className="navbar-container">
+        <div className="nav-container">
           <div className="nav-header">
             <Link to="/" className="nav-link">
               <div className="logo-name-container">
@@ -121,11 +121,11 @@ class Header extends Component {
               </button>
             </div>
           </div>
-        </nav>
+        </div>
         <div className="mobile-menu-only-options">
           {showMenu && this.renderHamburgerMenu()}
         </div>
-      </div>
+      </nav>
     )
   }
 }

@@ -1,7 +1,8 @@
 import {Component} from 'react'
-import {FiMinus, FiPlus} from 'react-icons/fi'
+import {BiRupee} from 'react-icons/bi'
 import './index.css'
 import Header from '../Header'
+import Footer from '../Footer'
 import CartContext from '../../context/CartContext'
 import EmptyCart from '../EmptyCart'
 import CartItem from '../CartItem'
@@ -13,6 +14,14 @@ class Cart extends Component {
         {value => {
           const {cartList} = value
           const showEmptyCartView = cartList.length === 0
+          const totalPrice = cartList.map(
+            eachItem => eachItem.cost * eachItem.quantity,
+          )
+
+          let total = null
+          if (cartList.length > 0) {
+            total = totalPrice.reduce((acc, price) => acc + price)
+          }
 
           return (
             <div>
@@ -29,9 +38,18 @@ class Cart extends Component {
                     {cartList.map(eachFoodItem => (
                       <CartItem foodItem={eachFoodItem} key={eachFoodItem.id} />
                     ))}
+                    <hr className="cart-horizontal-line" />
+                    <div className="cart-total-price-container">
+                      <p className="order-total">Order Total : </p>
+                      <p className="order-total">&#8377; {total}</p>
+                    </div>
+                    <button type="button" className="place-order-button">
+                      Place Order
+                    </button>
                   </ul>
                 </div>
               )}
+              <Footer />
             </div>
           )
         }}

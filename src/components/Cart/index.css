@@ -1,5 +1,4 @@
 .cart-container {
-  height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,11 +7,14 @@
 
 .cart-list-container {
   width: 85vw;
+  padding-bottom: 25px;
   background-color: #f9fbfe;
+  box-shadow: 0px 4px 15px rgba(11, 105, 255, 0.1);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 30px;
 }
 .food-name {
   color: #475569;
@@ -21,7 +23,7 @@
 }
 .food-list-names {
   display: flex;
-  width: 100vw;
+  width: 87vw;
   justify-content: space-around;
 }
 .cart-image-container {
@@ -37,4 +39,51 @@
   font-size: 20px;
   margin-left: 5px;
   font-family: 'Dm Sans';
+}
+.cart-horizontal-line {
+  border: 1px dashed #cbd2d9;
+  width: 80vw;
+}
+.order-total {
+  color: #3e4c59;
+  font-size: 24px;
+  font-family: 'Roboto';
+  font-weight: bold;
+}
+@media screen and (min-width: 992px) {
+  .cart-total-price-container {
+    display: flex;
+    width: 80vw;
+    padding-left: 20px;
+    padding-right: 90px;
+    justify-content: space-between;
+  }
+
+  .place-order-button {
+    margin-right: 80px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .cart-total-price-container {
+    display: flex;
+    width: 80vw;
+    padding-left: 20px;
+    padding-right: 40px;
+    justify-content: space-between;
+  }
+  .place-order-button {
+    margin-right: 25px;
+  }
+}
+
+.place-order-button {
+  background-color: #f7931e;
+  border-width: 0px;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 14px;
+  padding: 12px;
+  font-family: 'Dm Sans';
+  align-self: flex-end;
 }

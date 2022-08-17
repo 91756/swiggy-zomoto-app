@@ -35,7 +35,7 @@ class Home extends Component {
     resturantsList: '',
     apiStatus: apiStatusConstant.initial,
     activePage: 1,
-    selectedSortBy: sortByOptions[0].value,
+    selectedSortBy: sortByOptions[1].value,
     searchInput: '',
   }
 
@@ -107,7 +107,7 @@ class Home extends Component {
   }
 
   renderLoadingView = () => (
-    <div className="loader-container" testid="loader">
+    <div className="loader-container" testid="restaurants-list-loader">
       <Loader type="TailSpin" color="#F7931E" height="50" width="50" />
     </div>
   )
@@ -123,10 +123,7 @@ class Home extends Component {
   renderRestaurantsList = () => {
     const {resturantsList} = this.state
     return (
-      <ul
-        className="restaurants-list-container"
-        testid="restaurants-list-loader"
-      >
+      <ul className="restaurants-list-container">
         {resturantsList.map(eachItem => (
           <Link to={`/restaurant/${eachItem.id}`} className="nav-link">
             <li
@@ -145,7 +142,7 @@ class Home extends Component {
                 <div className="rating-container">
                   <BsStarFill className="star-icon" />
                   <p className="rating">{eachItem.userRating.rating}</p>
-                  <p className="count-rating">{`(${eachItem.userRating.total_reviews} ratings)`}</p>
+                  <h1 className="count-rating">{`(${eachItem.userRating.total_reviews} ratings)`}</h1>
                 </div>
               </div>
             </li>
@@ -169,7 +166,7 @@ class Home extends Component {
             </p>
             <div className="filter-container">
               <MdSort />
-              <h1 className="title-in-filter">Sort by</h1>
+              <p className="title-in-filter">Sort By</p>
               <select
                 value={selectedSortBy}
                 className="select-by-option"

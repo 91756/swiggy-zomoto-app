@@ -1,5 +1,7 @@
 .carousals-container {
   width: 85%;
+  list-style-type: none;
+  margin-top: 20px;
 }
 .container {
   display: flex;

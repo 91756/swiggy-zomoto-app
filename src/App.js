@@ -10,6 +10,7 @@ import PageNotFound from './components/PageNotFound'
 import ProtectedRoute from './components/ProtectedRoute'
 import RestaurantDetails from './components/RestaurantDetails'
 import CartContext from './context/CartContext'
+import PaymentSuccess from './components/PaymentSuccess'
 
 const sortByOptions = [
   {
