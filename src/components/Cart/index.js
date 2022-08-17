@@ -12,7 +12,16 @@ class Cart extends Component {
     return (
       <CartContext.Consumer>
         {value => {
-          const {cartList} = value
+          /*  const {cartList} = value
+          const showEmptyCartView = cartList.length === 0
+          const totalPrice = cartList.map(
+            eachItem => eachItem.cost * eachItem.quantity,
+          ) */
+
+          const getCartDataFromLocalStorage = localStorage.getItem('cartData')
+          const parsedCartData = JSON.parse(getCartDataFromLocalStorage)
+          const cartList = parsedCartData
+
           const showEmptyCartView = cartList.length === 0
           const totalPrice = cartList.map(
             eachItem => eachItem.cost * eachItem.quantity,
@@ -36,11 +45,15 @@ class Cart extends Component {
                       <p className="food-name">Price</p>
                     </div>
                     {cartList.map(eachFoodItem => (
-                      <CartItem foodItem={eachFoodItem} key={eachFoodItem.id} />
+                      <CartItem
+                        foodItem={eachFoodItem}
+                        key={eachFoodItem.id}
+                        testid="cartItem"
+                      />
                     ))}
                     <hr className="cart-horizontal-line" />
                     <div className="cart-total-price-container">
-                      <p className="order-total">Order Total : </p>
+                      <h1 className="order-total">Order Total: </h1>
                       <p className="order-total">&#8377; {total}</p>
                     </div>
                     <button type="button" className="place-order-button">

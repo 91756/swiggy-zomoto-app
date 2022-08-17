@@ -37,7 +37,7 @@ class FoodItemCard extends Component {
           }
 
           return (
-            <li className="food-item-container">
+            <li className="food-item-container" testid="foodItem">
               <img src={imageUrl} alt="food item" className="food-item-image" />
               <div className="food-item-details">
                 <h1 className="food-item-name">{name}</h1>

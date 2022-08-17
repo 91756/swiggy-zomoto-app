@@ -25,8 +25,17 @@ const sortByOptions = [
   },
 ]
 
+const getCartDataFromLocalStorage = () => {
+  const stringifiedCartData = localStorage.getItem('cartData')
+  const parsedCartData = JSON.parse(stringifiedCartData)
+  if (parsedCartData === null) {
+    return []
+  }
+  return parsedCartData
+}
+
 class App extends Component {
-  state = {cartList: []}
+  state = {cartList: getCartDataFromLocalStorage()}
 
   // remove cart Item
 
@@ -104,6 +113,7 @@ class App extends Component {
   render() {
     const {cartList} = this.state
     console.log(cartList)
+    localStorage.setItem('cartData', JSON.stringify(cartList))
     return (
       <CartContext.Provider
         value={{

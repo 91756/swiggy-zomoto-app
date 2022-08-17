@@ -8,7 +8,7 @@ const EmptyCart = () => (
       alt="empty cart"
       className="empty-cart-image"
     />
-    <h1 className="empty-cart-heading">No Orders Yet!</h1>
+    <h1 className="empty-cart-heading">No Order Yet!</h1>
     <p className="empty-cart-description">
       Your cart is empty. Add something from the menu.
     </p>
