@@ -1,15 +1,8 @@
-import React, {Component} from 'react'
+import {Component} from 'react'
 import Loader from 'react-loader-spinner'
 import Slider from 'react-slick'
 import Cookies from 'js-cookie'
 import './index.css'
-
-const apiStatusConstant = {
-  initial: 'INITIAL',
-  loading: 'IN_PROGRESS',
-  success: 'SUCCESS',
-  failure: 'FAILURE',
-}
 
 class HomeCarousals extends Component {
   state = {

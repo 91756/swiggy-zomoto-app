@@ -1,5 +1,6 @@
 import {FiMinus, FiPlus} from 'react-icons/fi'
 import {BiRupee} from 'react-icons/bi'
+import {RiCloseCircleFill} from 'react-icons/ri'
 
 import CartContext from '../../context/CartContext'
 import './index.css'
@@ -7,10 +8,14 @@ import './index.css'
 const FoodItem = props => (
   <CartContext.Consumer>
     {value => {
-      const {incrementCartItemQuantity, decrementCartItemQuantity} = value
+      const {
+        incrementCartItemQuantity,
+        decrementCartItemQuantity,
+        removeCartItem,
+      } = value
 
       const {foodItem} = props
-      const {imageUrl, name, quantity, cost, rating, id} = foodItem
+      const {imageUrl, name, quantity, cost, id} = foodItem
 
       const onDecrementQuantity = () => {
         decrementCartItemQuantity(id)
@@ -18,6 +23,10 @@ const FoodItem = props => (
 
       const onIncrementQuantity = () => {
         incrementCartItemQuantity(id)
+      }
+
+      const removingCartItem = () => {
+        removeCartItem(id)
       }
 
       return (
@@ -51,11 +60,20 @@ const FoodItem = props => (
               <FiPlus />
             </button>
           </div>
-          <div className="total-price-container cart-for-element">
-            <BiRupee color="#FFA412" />
-            <p className="price" testid="total-price">
-              {` ${cost * quantity}.00`}
-            </p>
+          <div className="cart-for-element">
+            <div className="total-price-container">
+              <BiRupee color="#FFA412" />
+              <p className="price" testid="total-price">
+                {` ${cost * quantity}.00`}
+              </p>
+            </div>
+            <button
+              type="button"
+              className="remove-one-item"
+              onClick={removingCartItem}
+            >
+              <RiCloseCircleFill className="remove-item" />
+            </button>
           </div>
         </li>
       )

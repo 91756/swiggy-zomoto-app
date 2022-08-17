@@ -1,18 +1,15 @@
-import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
+import {Switch, Route, Redirect} from 'react-router-dom'
 import {Component} from 'react'
 import './App.css'
-import Counter from './components/Counter'
 import Login from './components/Login'
 import Home from './components/Home'
-import Footer from './components/Footer'
 import Cart from './components/Cart'
 import PageNotFound from './components/PageNotFound'
 import ProtectedRoute from './components/ProtectedRoute'
 import RestaurantDetails from './components/RestaurantDetails'
 import CartContext from './context/CartContext'
-import PaymentSuccess from './components/PaymentSuccess'
 
-const sortByOptions = [
+/* const sortByOptions = [
   {
     id: 0,
     displayText: 'Highest',
@@ -23,7 +20,7 @@ const sortByOptions = [
     displayText: 'Lowest',
     value: 'Lowest',
   },
-]
+] */
 
 const getCartDataFromLocalStorage = () => {
   const stringifiedCartData = localStorage.getItem('cartData')
@@ -112,7 +109,7 @@ class App extends Component {
 
   render() {
     const {cartList} = this.state
-    console.log(cartList)
+    // console.log(cartList)
     localStorage.setItem('cartData', JSON.stringify(cartList))
     return (
       <CartContext.Provider

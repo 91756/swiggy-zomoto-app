@@ -87,3 +87,25 @@
   font-family: 'Dm Sans';
   align-self: flex-end;
 }
+
+@media screen and (min-width: 992px) {
+  .remove-all-cart-items {
+    align-self: flex-end;
+    font-size: 12px;
+    margin-right: 115px;
+    color: #f7931e;
+    background-color: transparent;
+    border-width: 0px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .remove-all-cart-items {
+    align-self: flex-end;
+    font-size: 12px;
+    margin-right: 43px;
+    color: #f7931e;
+    background-color: transparent;
+    border-width: 0px;
+  }
+}

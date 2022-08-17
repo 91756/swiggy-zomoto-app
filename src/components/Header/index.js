@@ -1,7 +1,8 @@
 import {Component} from 'react'
-import {Redirect, withRouter, useLocation, Link} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import {BsList, BsFillXCircleFill} from 'react-icons/bs'
+import CartContext from '../../context/CartContext'
 import './index.css'
 
 class Header extends Component {
@@ -14,6 +15,23 @@ class Header extends Component {
     Cookies.remove('jwt_token')
     history.replace('/login')
   }
+
+  renderCartItemCount = () => (
+    <CartContext.Consumer>
+      {value => {
+        const {cartList} = value
+        const cartItemsCount = cartList.length
+        console.log(cartItemsCount)
+        return (
+          <div>
+            {cartItemsCount > 0 ? (
+              <span className="cart-item-count">{cartList.length}</span>
+            ) : null}
+          </div>
+        )
+      }}
+    </CartContext.Consumer>
+  )
 
   renderHamburgerMenu = () => {
     const {location} = this.props
@@ -38,7 +56,9 @@ class Header extends Component {
                 path === 'cart' ? 'active-for-class' : 'nav-item-mobile'
               }
             >
-              Cart
+              <div className="header-cart-count">
+                Cart {this.renderCartItemCount()}
+              </div>
             </li>
           </Link>
           <li className="nav-item-mobile">
@@ -98,7 +118,9 @@ class Header extends Component {
               </Link>
               <Link to="/cart" className="nav-link">
                 <li className={path === 'cart' ? 'active-class' : 'nav-item'}>
-                  Cart
+                  <div className="header-cart-count">
+                    Cart {this.renderCartItemCount()}
+                  </div>
                 </li>
               </Link>
               <li className=" nav-item">

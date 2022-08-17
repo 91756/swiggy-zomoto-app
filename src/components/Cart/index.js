@@ -1,5 +1,4 @@
 import {Component} from 'react'
-import {BiRupee} from 'react-icons/bi'
 import './index.css'
 import Header from '../Header'
 import Footer from '../Footer'
@@ -15,8 +14,8 @@ class Cart extends Component {
     return (
       <CartContext.Consumer>
         {value => {
-          /*  const {cartList} = value
-          const showEmptyCartView = cartList.length === 0
+          const {removeAllCartItems} = value
+          /* const showEmptyCartView = cartList.length === 0
           const totalPrice = cartList.map(
             eachItem => eachItem.cost * eachItem.quantity,
           ) */
@@ -54,6 +53,13 @@ class Cart extends Component {
                   ) : (
                     <div className="cart-container">
                       <ul className="cart-list-container">
+                        <button
+                          className="remove-all-cart-items"
+                          type="button"
+                          onClick={removeAllCartItems}
+                        >
+                          Remove All
+                        </button>
                         <div className="food-list-names">
                           <p className="food-name">Item</p>
                           <p className="food-name">Quantity</p>

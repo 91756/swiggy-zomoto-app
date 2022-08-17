@@ -125,3 +125,19 @@
   font-size: 12px;
   list-style-type: none;
 }
+.header-cart-count {
+  display: flex;
+  align-items: center;
+}
+.cart-item-count {
+  background-color: #ccd7e6;
+  color: #f7931e;
+  font-weight: 500;
+  border-radius: 50%;
+  padding-left: 5px;
+  padding-top: 2px;
+  font-size: 12px;
+  padding-right: 5px;
+  padding-bottom: 2px;
+  margin-left: 8px;
+}
