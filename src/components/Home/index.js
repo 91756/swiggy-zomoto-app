@@ -45,11 +45,11 @@ class Home extends Component {
 
   getRestaurantsData = async () => {
     this.setState({apiStatus: apiStatusConstant.loading})
-    const {activePage, selectedSortBy} = this.state
+    const {activePage, selectedSortBy, searchInput} = this.state
     const LIMIT = 9
     const offset = (activePage - 1) * LIMIT
-    console.log(offset)
-    const url = `https://apis.ccbp.in/restaurants-list?offset=${offset}&limit=${LIMIT}&sort_by_rating=${selectedSortBy}`
+    // console.log(offset)
+    const url = `https://apis.ccbp.in/restaurants-list?&offset=${offset}&limit=${LIMIT}&sort_by_rating=${selectedSortBy}`
     const jwtToken = Cookies.get('jwt_token')
     const options = {
       method: 'GET',
@@ -58,8 +58,9 @@ class Home extends Component {
       },
     }
     const response = await fetch(url, options)
+    console.log(response)
     const data = await response.json()
-    console.log(data)
+    //  console.log(data)
     const restaurantsData = data.restaurants.map(eachItem => ({
       costForTwo: eachItem.cost_for_two,
       cuisine: eachItem.cuisine,
@@ -75,7 +76,7 @@ class Home extends Component {
       opensAt: eachItem.opens_at,
       userRating: eachItem.user_rating,
     }))
-    console.log(restaurantsData)
+    //  console.log(restaurantsData)
     if (response.ok === true) {
       this.setState({
         apiStatus: apiStatusConstant.success,
@@ -112,16 +113,18 @@ class Home extends Component {
     </div>
   )
 
-  getResultedData = searchInput => {
-    const {resturantsList} = this.state
-    const resultedData = resturantsList.filter(eachItem =>
-      eachItem.name.toLowercase().includes(searchInput.toLowercase()),
-    )
-    return resultedData
+  onEnterKey = event => {
+    if (event.key === 'Enter') {
+      this.getRestaurantsData()
+    }
   }
 
   renderRestaurantsList = () => {
     const {resturantsList} = this.state
+    const {searchInput} = this.state
+    console.log(searchInput)
+    /*  const filteredData = this.getResultedData(searchInput)
+    console.log(filteredData) */
     return (
       <ul className="restaurants-list-container">
         {resturantsList.map(eachItem => (
@@ -154,7 +157,7 @@ class Home extends Component {
 
   renderSuccessView = () => {
     const {resturantsList, selectedSortBy, activePage} = this.state
-    console.log(activePage)
+    // console.log(activePage)
     return (
       <div className="restaurants-container">
         <div className="restaurant-list">
@@ -185,9 +188,10 @@ class Home extends Component {
             </div>
           </div>
           <input
-            type="text"
+            type="search"
             className="search-input"
             onChange={this.onChangeSearchInput}
+            onKeyDown={this.onEnterKey}
           />
           <hr className="hr-line" />
         </div>
@@ -217,6 +221,12 @@ class Home extends Component {
     )
   }
 
+  renderFailureView = () => (
+    <div>
+      <h1>No Result is found</h1>
+    </div>
+  )
+
   renderRestaurantsStatusView = () => {
     const {apiStatus} = this.state
     switch (apiStatus) {
@@ -224,6 +234,9 @@ class Home extends Component {
         return this.renderLoadingView()
       case apiStatusConstant.success:
         return this.renderSuccessView()
+
+      case apiStatusConstant.failure:
+        return this.renderFailureView()
       default:
         return null
     }

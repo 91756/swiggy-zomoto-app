@@ -51,7 +51,7 @@ class HomeCarousals extends Component {
 
   renderCarousalsView = () => {
     const {carousalsList} = this.state
-    console.log(carousalsList)
+    //  console.log(carousalsList)
     const settings = {
       dots: true,
       infinite: true,

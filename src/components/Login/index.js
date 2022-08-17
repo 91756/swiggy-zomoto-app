@@ -4,7 +4,7 @@ import {Redirect} from 'react-router-dom'
 import './index.css'
 
 class Login extends Component {
-  state = {username: '', password: '', showErrorMsg: false, errorMsg: 'not get'}
+  state = {username: '', password: '', showErrorMsg: false, errorMsg: ''}
 
   loginSuccess = jwtToken => {
     const {history} = this.props

@@ -9,8 +9,8 @@ class Header extends Component {
 
   onLogout = () => {
     const {history} = this.props
-    console.log(history)
-    console.log('logout')
+    //  console.log(history)
+    //   console.log('logout')
     Cookies.remove('jwt_token')
     history.replace('/login')
   }

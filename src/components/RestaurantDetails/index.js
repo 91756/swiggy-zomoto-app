@@ -57,7 +57,7 @@ class RestaurantDetails extends Component {
         rating: eachItem.rating,
       })),
     }
-    console.log(restaurantDetails)
+    //  console.log(restaurantDetails)
     if (response.ok === true) {
       this.setState({
         restaurantData: restaurantDetails,
